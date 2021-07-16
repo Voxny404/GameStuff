@@ -200,7 +200,7 @@ class VGC {
 
   }
 
-  makeDpadButtons() {
+  createDpadButtons() {
     let div = document.createElement('div');
     div.setAttribute('id', 'Dpad');
     div.setAttribute('style', this.cssOverFlow);
@@ -305,7 +305,7 @@ class VGC {
 
   }
 
-  makeJoystickButtons() {
+  createJoystickButtons() {
     let div = document.createElement('div');
     div.setAttribute('id', 'joystickButtons');
     div.setAttribute('style', this.cssOverFlow);
