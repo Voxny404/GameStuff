@@ -6,34 +6,32 @@ p.style.fontSize = '40px';
 p.style.textAlign = 'center';
 
 const vgc = new VGC();
-vgc.createJoystick();
 
-let buttonA = document.getElementById('buttonA');
-let buttonB = document.getElementById('buttonB');
-let buttonStart = document.getElementById('buttonStart');
-let buttonSelect = document.getElementById('buttonSelect');
+vgc.createJoystick();
+vgc.makeJoystickButtons();
+vgc.makeDpadButtons();
+vgc.createVisionStick();
+vgc.createSettingsButton();
 
 const gameAnimation = () => {
   requestAnimationFrame(gameAnimation);
 
   if (vgc.joystickStateX) p.innerText = vgc.joystickStateX;
+  if (vgc.joystickStateVisionY)  p.innerText = vgc.joystickStateVisionY;
+  if (vgc.joystickStateVisionX) p.innerText = vgc.joystickStateVisionX;
   if (vgc.joystickStateY)  p.innerText = vgc.joystickStateY;
-};
+  if (vgc.buttonState)  p.innerText = vgc.buttonState;
+  if (vgc.buttonDpadState) p.innerText = vgc.buttonDpadState;
 
-buttonA.onclick = () => {
-  p.innerText = 'A';
-};
-
-buttonB.onclick = () => {
-  p.innerText = 'B';
-};
-
-buttonStart.onclick = () => {
-  p.innerText = 'START';
-};
-
-buttonSelect.onclick = () => {
-  p.innerText = 'SELECT';
+  if (!vgc.joystickStateX &&
+      !vgc.joystickStateY &&
+      !vgc.buttonState &&
+      !vgc.buttonDpadState &&
+      !vgc.joystickStateVisionY &&
+      !vgc.joystickStateVisionX
+    ) {
+    p.innerText = '';
+  }
 };
 
 gameAnimation();
