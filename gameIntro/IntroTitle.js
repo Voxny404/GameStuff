@@ -19,8 +19,79 @@ class IntroTitle {
     document.body.style.background = 'black';
 
     if (gameButtons) this.displayButtons = true;
+    this.brandName(gameCanvasIntro, ctx, gameTitle);
+    //this.titleAndEngineName(gameCanvasIntro, ctx, gameTitle);
 
-    ctx.fillStyle = 'black';
+  }
+
+  brandName(gameCanvasIntro, ctx, gameTitle) {
+    ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+    ctx.strokeStyle = 'white';
+    ctx.font = '48px 	Verdana';
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('V |', gameCanvasIntro.width / 2, gameCanvasIntro.height / 2);
+    }, 2000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VO |', (gameCanvasIntro.width / 2) - 40, gameCanvasIntro.height / 2);
+    }, 2500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOX |', (gameCanvasIntro.width / 2) - 60, gameCanvasIntro.height / 2);
+    }, 3000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXN |',(gameCanvasIntro.width / 2) - 80, gameCanvasIntro.height / 2);
+    }, 3500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY |',(gameCanvasIntro.width / 2) - 100, gameCanvasIntro.height / 2);
+    }, 4000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY4 |', (gameCanvasIntro.width / 2) - 120, gameCanvasIntro.height / 2);
+    }, 4500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY40 |', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 5000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 |', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 5500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 ', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 6000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 |', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 6500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 ', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 7000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 |', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 7500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 ', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 8000);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 |', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+    }, 8500);
+    setTimeout(() => {
+      ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
+      ctx.strokeText('VOXNY404 ', (gameCanvasIntro.width / 2) - 140, gameCanvasIntro.height / 2);
+      this.titleAndEngineName(gameCanvasIntro, ctx, gameTitle);
+    }, 9000);
+  }
+
+  titleAndEngineName(gameCanvasIntro, ctx, gameTitle) {
     ctx.fillRect(0, 0, gameCanvasIntro.width, gameCanvasIntro.height);
     ctx.fillStyle = 'white';
     ctx.font = '48px serif';
@@ -28,7 +99,7 @@ class IntroTitle {
     ctx.font = '18px serif';
     ctx.fillStyle = 'gray';
     ctx.globalAlpha = 0.5;
-    ctx.fillText('powered by Vengine', 10, (gameCanvasIntro.height / 2) + 30);
+    ctx.fillText('powered by V404 Engine', 10, (gameCanvasIntro.height / 2) + 30);
 
     ctx.strokeStyle = 'purple';
     ctx.font = '488px serif';
@@ -68,9 +139,15 @@ class IntroTitle {
           gameCanvasIntro.height - 50
         );
       }
-      
+
       this.titleAnimationdone = true;
     }, 4000);
+  }
+
+  destroy() {
+    let canvas = document.getElementById('gameCanvasIntro');
+    if (!canvas) console.log('canvas: gameCanvasIntro is not existing!');
+    canvas.remove();
   }
 
 }

@@ -18,7 +18,8 @@ const animation = () => {
   if (iTitle.titleAnimationdone && checker == false) {
     checker = true;
     console.log('Loading Done');
-
+    iTitle.destroy();
+    
     //gameCanvasIntro.style.display = 'none';
   }
 };
