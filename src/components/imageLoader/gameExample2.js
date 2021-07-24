@@ -1,4 +1,4 @@
-let spriteAnimator = new ImageLoader()
+let spriteAnimator = new ImageLoader();
 
 //sprite object
 let player = {
