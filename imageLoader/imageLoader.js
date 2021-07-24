@@ -27,8 +27,8 @@ class ImageLoader {
   updateImageObject(object) {
 
     if (!object.id) console.log('ImageLoader: NO OBJCET ID SET');
-    if (!object.x) console.log('ImageLoader: NO OBJECT X SET');
-    if (!object.y) console.log('ImageLoader: NO OBJECT Y SET');
+    if (!object.x && object.x !== 0) console.log('ImageLoader: NO OBJECT X SET');
+    if (!object.y && object.y !== 0) console.log('ImageLoader: NO OBJECT Y SET');
     if (!object.width) console.log('ImageLoader: NO OBJECT WIDTH SET');
     if (!object.height) console.log('ImageLoader: NO OBJECT HEIGHT SET');
 

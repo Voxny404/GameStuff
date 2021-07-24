@@ -12,6 +12,3 @@
   * right now only one rectangle object can be created
 5. TextObject
 6. ImageLoader
-7. SpriteAnimator
-* Note
-  * SpriteAnimaor is almost exactly the same like ImageLoader it includes a different usage though

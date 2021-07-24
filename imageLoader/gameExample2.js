@@ -1,4 +1,4 @@
-let spriteAnimator = new SpriteAnimator()
+let spriteAnimator = new ImageLoader()
 
 //sprite object
 let player = {
@@ -23,9 +23,9 @@ let npc2 = {
 spriteAnimator.loadImage('players.png');
 
 //create the elements
-spriteAnimator.createSpriteAnimation(player.id);
-spriteAnimator.createSpriteAnimation(npc.id);
-spriteAnimator.createSpriteAnimation(npc2.id);
+spriteAnimator.createImageObject(player.id);
+spriteAnimator.createImageObject(npc.id);
+spriteAnimator.createImageObject(npc2.id);
 
 //simple ai logic
 let turnRandomly = Math.floor(Math.random() * 5);
@@ -110,9 +110,9 @@ const gameLoop = () => {
   requestAnimationFrame(gameLoop);
 
   //update the sprite
-  spriteAnimator.updateSpriteAnimation(player);
-  spriteAnimator.updateSpriteAnimation(npc);
-  spriteAnimator.updateSpriteAnimation(npc2);
+  spriteAnimator.updateImageObject(player);
+  spriteAnimator.updateImageObject(npc);
+  spriteAnimator.updateImageObject(npc2);
 
   //change the values
   aiLogic(turnRandomly, turnRandomly2, npc, npc2);
