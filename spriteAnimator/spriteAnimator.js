@@ -1,6 +1,18 @@
-class ImageLoader {
+class SpriteAnimator {
   constructor() {
     this.imageMap = null;
+  }
+
+  createSpriteAnimation(id) {
+    if(!id) console.log('SpriteAnimator: create must have an id object');
+
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+    let div = document.createElement('div');
+    canvas.setAttribute('id', id);
+    div.setAttribute('id', 'div_' + id);
+    div.appendChild(canvas);
+    document.body.appendChild(div);
   }
 
   loadImage(imagePath) {
@@ -12,23 +24,11 @@ class ImageLoader {
     }
   }
 
-  createImageObject(id) {
-    if(!id) console.log('ImageLoader: create must have an id object');
-
-    let div = document.createElement('div');
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
-    canvas.setAttribute('id', id);
-    div.setAttribute('id', 'div_'+id);
-    div.appendChild(canvas);
-    document.body.appendChild(div);
-  }
-
-  updateImageObject(object) {
+  updateSpriteAnimation(object) {
 
     if (!object.id) console.log('ImageLoader: NO OBJCET ID SET');
-    if (!object.x) console.log('ImageLoader: NO OBJECT X SET');
-    if (!object.y) console.log('ImageLoader: NO OBJECT Y SET');
+    if (!object.x && object.x !== 0) console.log('ImageLoader: NO OBJECT X SET');
+    if (!object.y && object.y !== 0) console.log('ImageLoader: NO OBJECT Y SET');
     if (!object.width) console.log('ImageLoader: NO OBJECT WIDTH SET');
     if (!object.height) console.log('ImageLoader: NO OBJECT HEIGHT SET');
 
@@ -66,12 +66,5 @@ class ImageLoader {
         object.height
       );
     }
-  }
-
-  destroy(id) {
-    let div = document.getElementById('div_' + id);
-    if (!div) {
-      console.log(`ImageLoader: ${div} is not existing!`);
-    } else { div.remove(); }
   }
 }

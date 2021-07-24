@@ -2,11 +2,13 @@
 let imageLoader = new ImageLoader();
 
 let cloud = {
+  tileWidth: 17, tileHeight: 17, tileZoom: 16,
   x: 12, y: 3, positionX: 0, positionY: 0,
   width: 60, height: 60, id: 'cloud', overlay: 1
 }
 
 let objectSky = {
+  tileWidth: 17, tileHeight: 17, tileZoom: 16,
   x: 12, y: 6, positionX: 0, positionY: 0,
   width: window.innerWidth, height: window.innerHeight,
   id: 'sky', overlay: 0
@@ -14,6 +16,9 @@ let objectSky = {
 
 let tree = {
   treeTopM: {
+    tileWidth: 17,
+    tileHeight: 17,
+    tileZoom: 16,
     x: 7,
     y: 6,
     positionX: window.innerWidth / 2,
@@ -24,6 +29,9 @@ let tree = {
     overlay: 0
   },
   treeTopL: {
+    tileWidth: 17,
+    tileHeight: 17,
+    tileZoom: 16,
     x: 8,
     y: 6,
     positionX: window.innerWidth / 2 + 60,
@@ -34,6 +42,9 @@ let tree = {
     overlay: 0
   },
   treeTopR: {
+    tileWidth: 17,
+    tileHeight: 17,
+    tileZoom: 16,
     x: 6,
     y: 6,
     positionX: window.innerWidth / 2 -60,
@@ -45,7 +56,6 @@ let tree = {
   },
 }
 
-imageLoader.setTileSize(16);
 imageLoader.loadImage('map.png');
 
 imageLoader.createImageObject('cloud');

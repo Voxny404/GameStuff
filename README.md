@@ -11,3 +11,4 @@
 * issue
   * right now only one rectangle object can be created
 5. TextObject
+6. ImageLoader
