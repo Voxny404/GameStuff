@@ -1,5 +1,10 @@
 # GameStuff
 
+## Available games
+1. Bacterial
+  * Description
+    * Chose your lucky number and watch bacteria eat each other on collision
+
 ## Available scripts
 
 1. GameController
@@ -12,3 +17,8 @@
   * right now only one rectangle object can be created
 5. TextObject
 6. ImageLoader
+
+## License & copyright
+ © Jessica Nicole P., Voxny404
+
+ Licensed under the [MIT License](LICENSE).

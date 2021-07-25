@@ -1,4 +1,13 @@
 class ImageLoader {
+
+  // © 2021 by Voxny404
+  //  _   __                    ____ ___  ____
+  // | | / /__ __ __ ___  __ __/ / // _ \/ / /
+  // | |/ / _ \\ \ // _ \/ // /_  _/ // /_  _/
+  // |___/\___/_\_\/_//_/\_, / /_/ \___/ /_/
+  //                    /___/
+  // https://voxny404.github.io/portfolio
+
   constructor() {
     this.imageMap = null;
   }
@@ -9,7 +18,7 @@ class ImageLoader {
     image.src = imagePath;
     image.onload = () => {
       this.imageMap = image;
-    }
+    };
   }
 
   createImageObject(id) {

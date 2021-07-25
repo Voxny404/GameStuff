@@ -1,4 +1,13 @@
 class ImageLoader {
+
+  // © 2021 by Voxny404
+  //  _   __                    ____ ___  ____
+  // | | / /__ __ __ ___  __ __/ / // _ \/ / /
+  // | |/ / _ \\ \ // _ \/ // /_  _/ // /_  _/
+  // |___/\___/_\_\/_//_/\_, / /_/ \___/ /_/
+  //                    /___/
+  // https://voxny404.github.io/portfolio
+
   constructor() {
     this.imageMap = null;
   }
@@ -9,17 +18,17 @@ class ImageLoader {
     image.src = imagePath;
     image.onload = () => {
       this.imageMap = image;
-    }
+    };
   }
 
   createImageObject(id) {
-    if(!id) console.log('ImageLoader: create must have an id object');
+    if (!id) console.log('ImageLoader: create must have an id object');
 
     let div = document.createElement('div');
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
     canvas.setAttribute('id', id);
-    div.setAttribute('id', 'div_'+id);
+    div.setAttribute('id', 'div_' + id);
     div.appendChild(canvas);
     document.body.appendChild(div);
   }
@@ -45,8 +54,8 @@ class ImageLoader {
     canvas.style.left = '0px';
 
     ctx.fillStyle = 'gray';
-    ctx.font = 'bold 30px Arial'
-    ctx.fillText('AMOUNT: '+remaining,20,30,);
+    ctx.font = 'bold 30px Arial';
+    ctx.fillText('AMOUNT: ' + remaining, 20, 30);
 
   }
 
@@ -57,13 +66,14 @@ class ImageLoader {
     if (!object.y && object.y !== 0) console.log('ImageLoader: NO OBJECT Y SET');
     if (!object.width) console.log('ImageLoader: NO OBJECT WIDTH SET');
     if (!object.height) console.log('ImageLoader: NO OBJECT HEIGHT SET');
+    if (!object.color) console.log('ImageLoader: NO COLOR SET');
 
     let canvas = document.getElementById(object.id);
     if(!canvas) return
     let ctx = canvas.getContext('2d');
     canvas.setAttribute('style', `z-index:${object.overlay}`);
 
-    let tileMap = { width: 0, height: 0 }
+    let tileMap = { width: 0, height: 0 };
 
     for (var i = 0; i < object.x; i++) {
       tileMap.width = tileMap.width + object.tileWidth;
@@ -91,9 +101,12 @@ class ImageLoader {
         object.width,
         object.height
       );
-      ctx.fillStyle = 'gray'
-        ctx.font = 'bold 15px Arial'
-      ctx.fillText(object.id.replace('npcPlayer', '')+ '   LVL: '+object.lvl, object.positionX,object.positionY)
+      ctx.fillStyle = object.color;
+      ctx.font = 'bold 15px Arial';
+      ctx.fillText(
+        object.id.replace('npcPlayer', '') + '   LVL: ' + object.lvl,
+        object.positionX, object.positionY
+      );
     }
   }
 
