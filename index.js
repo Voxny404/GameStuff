@@ -16,6 +16,7 @@ document.body.appendChild(app);
 
 let canvas = document.createElement('canvas');
 let ctx = canvas.getContext('2d');
+let startStars = 150;
 canvas.setAttribute('style', 'z-index:-1');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -24,6 +25,12 @@ canvas.style.top = '0px';
 canvas.style.left = '0px';
 ctx.fillStyle = 'white';
 canvas.style.animation = "shake 20s infinite";
+
+for (var i = 0; i < startStars; i++) {
+  ctx.font = Math.floor(Math.random()*20) + 'px serif';
+  ctx.fillText('.', Math.floor(Math.random() * window.innerWidth), Math.floor(Math.random() * window.innerHeight));
+}
+
 setInterval(() => {
   ctx.font = Math.floor(Math.random()*20) + 'px serif';
   ctx.fillText('.', Math.floor(Math.random() * window.innerWidth), Math.floor(Math.random() * window.innerHeight));

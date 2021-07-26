@@ -12,6 +12,7 @@ const iTitle = new IntroTitle();
 let time = new Date();
 
 let npcs = null;
+let npcsMaxValue = 150;
 let guessNumber = null;
 let remainingObjects = null;
 let ids = [];
@@ -37,12 +38,14 @@ setInterval(() => {
   }
 }, 500);
 
+if (typeof window.orientation !== 'undefined') npcsMaxValue = 20;
+
 const createStartButtons = (info, input, button, button2) => {
   document.body.style.background = '#2E2B7C';
 
   document.body.appendChild(info);
   info.setAttribute('style', `z-index:2`);
-  info.innerText = 'HOW MANY BACTERIA  |  150 MAX';
+  info.innerText = 'HOW MANY BACTERIA  |  ' + npcsMaxValue + ' MAX';
   info.style.textAlign = 'center';
   info.style.position = 'fixed';
   info.style.left = '200px';
@@ -85,7 +88,7 @@ button.onclick = () => {
   if (input) {
     try {
       npcs = parseInt(input.value);
-      if (npcs && npcs <= 150) {
+      if (npcs && npcs <= npcsMaxValue) {
         input.value = '';
         info.innerText = 'PICK A NUMBER';
         button.style.display = 'none';
