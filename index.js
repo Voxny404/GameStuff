@@ -118,3 +118,11 @@ virtuelController.style.textDecoration = 'none';
 virtuelController.setAttribute('href','src/components/virtualGameController/exampleVGC.html');
 app.appendChild(document.createElement('br'));
 app.appendChild(virtuelController);
+
+let menuBar = document.createElement('a');
+menuBar.innerText = 'MENU BAR';
+menuBar.style.fontSize = '12px';
+menuBar.style.textDecoration = 'none';
+menuBar.setAttribute('href','src/components/menuBar/gameDisplay.html');
+app.appendChild(document.createElement('br'));
+app.appendChild(menuBar);
