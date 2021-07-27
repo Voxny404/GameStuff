@@ -1,7 +1,7 @@
 # GameStuff
 
 ## Available games
-1. Bacterial
+### 1. Bacterial
   * Description
     * Chose your lucky number and watch bacteria eat each other on collision
 
