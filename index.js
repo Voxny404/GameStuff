@@ -126,3 +126,11 @@ menuBar.style.textDecoration = 'none';
 menuBar.setAttribute('href','src/components/menuBar/gameDisplay.html');
 app.appendChild(document.createElement('br'));
 app.appendChild(menuBar);
+
+let gravity = document.createElement('a');
+gravity.innerText = 'SIMPLE GRAVITY';
+gravity.style.fontSize = '12px';
+gravity.style.textDecoration = 'none';
+gravity.setAttribute('href','src/components/gravity/gameDisplay.html');
+app.appendChild(document.createElement('br'));
+app.appendChild(gravity);
