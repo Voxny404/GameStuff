@@ -4,6 +4,10 @@
 ### 1. Bacterial
   * Description
     * Chose your lucky number and watch bacteria eat each other on collision
+### 2. Zombies
+  * Description
+    * shoot as many zombies as you can
+
 
 ## Available scripts
 
@@ -12,7 +16,7 @@
   * Maps the game controller output
 ### 2. VirtualGameController
 * Description
- * A virtual game controller with mapped output
+  * A virtual game controller with mapped output
 * issue
   * the controller dpad has to stay at the top otherwise the values are wrong
 ### 3. GameIntro
@@ -25,7 +29,7 @@
   * right now only one rectangle object can be created
 ### 5. TextObject
 * Description
- * Displays Text area with a selector
+  * Displays Text area with a selector
 ### 6. ImageLoader
 * Description
   * Useful to animate sprites or to select different parts of an image

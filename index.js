@@ -56,6 +56,14 @@ bacterial.setAttribute('href', 'src/games/bacteria/index.html');
 app.appendChild(document.createElement('br'));
 app.appendChild(bacterial);
 
+let zombies = document.createElement('a');
+zombies.innerText = 'ZOMBIES';
+zombies.style.fontSize = '12px';
+zombies.style.textDecoration = 'none';
+zombies.setAttribute('href', 'src/games/zombies/index.html');
+app.appendChild(document.createElement('br'));
+app.appendChild(zombies);
+
 app.appendChild(document.createElement('br'));
 let h3Title = document.createElement('h3');
 h3Title.innerText = 'COMPONENTS';
