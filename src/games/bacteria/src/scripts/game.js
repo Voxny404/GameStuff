@@ -7,12 +7,12 @@
 //                    /___/
 // https://voxny404.github.io/portfolio
 
-let spriteAnimator = new ImageLoader();
+const spriteAnimator = new ImageLoader();
 const iTitle = new IntroTitle();
 let time = new Date();
 
 let npcs = null;
-let npcsMaxValue = 150;
+let npcsMaxValue = 200;
 let guessNumber = null;
 let remainingObjects = null;
 let ids = [];
@@ -38,7 +38,7 @@ setInterval(() => {
   }
 }, 500);
 
-if (typeof window.orientation !== 'undefined') npcsMaxValue = 20;
+if (typeof window.orientation !== 'undefined') npcsMaxValue = 100;
 
 const createStartButtons = (info, input, button, button2) => {
   document.body.style.background = '#2E2B7C';
@@ -94,7 +94,7 @@ button.onclick = () => {
         button.style.display = 'none';
         button2.style.display = 'block';
         createObjects(npcs);
-      } else { info.innerText = 'MAX VALUE IS 150'; }
+      } else { info.innerText = 'MAX VALUE IS ' + npcsMaxValue; }
 
     } catch (e) { info.innerText = 'not a number'; }
   }
@@ -107,15 +107,16 @@ const createObjects = (npcs) => {
       tileWidth: 100, tileHeight: 430, tileZoom: 180,
       x: 0, y: 1, positionX: Math.floor(Math.random() * window.innerWidth),
       positionY: Math.floor(Math.random() * window.innerHeight),
-      width: 60, height: 60, id: 'npcPlayer' + [i], overlay: 1, npcsSpeed: 5,
+      width: 60, height: 60, id: 'npcPlayer'+[i], overlay: 1, npcsSpeed: 5,
       lvl: 0, color: '#080642',
     };
 
-    //create the elements
-    spriteAnimator.createImageObject(npcPlayer.id);
+
     ids.push(npcPlayer);
     remainingObjects = npcs;
   }
+  //create the elements
+  spriteAnimator.createImageObject('npcPlayer');
 };
 
 const millisToMinutesAndSeconds = (millis) => {
@@ -162,22 +163,18 @@ const collision = (object, object2, radius) => {
 const gameLoop = () => {
   requestAnimationFrame(gameLoop);
 
-  ids.forEach((item, i) => {
-    //update the sprites
-    if (i === guessNumber) {
-      item.color = 'red';
-    }
-
-    spriteAnimator.updateImageObject(item);
-    npcMover(item);
-  });
-
   //score count
   spriteAnimator.updateScoreBoard(remainingObjects);
 
   // checking for collisions
   for (let i = 0; i < ids.length; i++) {
     obj1 = ids[i];
+
+    if (i === guessNumber && obj1) obj1.color = 'red';
+
+    if (ids[i]) spriteAnimator.updateImageObject(ids[i], ids);
+    if (ids[i]) npcMover(obj1);
+
     for (let j = i + 1; j < ids.length; j++) {
       obj2 = ids[j];
 
@@ -211,7 +208,7 @@ const gameLoop = () => {
 
         // remove the object
         delete ids[j];
-        spriteAnimator.destroy(obj2.id);
+        //spriteAnimator.destroy(obj2.id);
       }
     }
   }

@@ -59,29 +59,20 @@ class ImageLoader {
 
   }
 
-  updateImageObject(object) {
+  updateImageObject(object, objectArray) {
 
-    if (!object.id) console.log('ImageLoader: NO OBJCET ID SET');
-    if (!object.x && object.x !== 0) console.log('ImageLoader: NO OBJECT X SET');
-    if (!object.y && object.y !== 0) console.log('ImageLoader: NO OBJECT Y SET');
-    if (!object.width) console.log('ImageLoader: NO OBJECT WIDTH SET');
-    if (!object.height) console.log('ImageLoader: NO OBJECT HEIGHT SET');
-    if (!object.color) console.log('ImageLoader: NO COLOR SET');
-
-    let canvas = document.getElementById(object.id);
-    if(!canvas) return
+    let canvas = document.getElementById('npcPlayer');
+    if (!canvas) return;
     let ctx = canvas.getContext('2d');
-    canvas.setAttribute('style', `z-index:${object.overlay}`);
+    //canvas.setAttribute('style', `z-index:${object.overlay}`);
 
     let tileMap = { width: 0, height: 0 };
 
-    for (var i = 0; i < object.x; i++) {
-      tileMap.width = tileMap.width + object.tileWidth;
-    }
+    for (var i = 0; i < object.x; i++)
+    tileMap.width = tileMap.width + object.tileWidth;
 
-    for (var i = 0; i < object.y; i++) {
-      tileMap.height = tileMap.height + object.tileHeight;
-    }
+    for (var i = 0; i < object.y; i++)
+    tileMap.height = tileMap.height + object.tileHeight;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -89,24 +80,32 @@ class ImageLoader {
     canvas.style.top = '0px';
     canvas.style.left = '0px';
 
-    if (this.imageMap) {
-      ctx.drawImage(
-        this.imageMap,
-        tileMap.width,
-        tileMap.height,
-        object.tileZoom,
-        object.tileZoom,
-        object.positionX,
-        object.positionY,
-        object.width,
-        object.height
-      );
-      ctx.fillStyle = object.color;
-      ctx.font = 'bold 15px Arial';
-      ctx.fillText(
-        object.id.replace('npcPlayer', '') + '   LVL: ' + object.lvl,
-        object.positionX, object.positionY
-      );
+    if (this.imageMap && objectArray) {
+      for (var i = 0; i < objectArray.length; i++) {
+        if (objectArray[i]) {
+          ctx.drawImage(
+            this.imageMap,
+            tileMap.width,
+            tileMap.height,
+            objectArray[i].tileZoom,
+            objectArray[i].tileZoom,
+            objectArray[i].positionX,
+            objectArray[i].positionY,
+            objectArray[i].width,
+            objectArray[i].height
+          );
+          ctx.fillStyle = objectArray[i].color;
+          ctx.font = 'bold 15px Arial';
+          ctx.fillText(
+            objectArray[i].id.replace('npcPlayer', '') + '   LVL: ' + objectArray[i].lvl,
+            objectArray[i].positionX, objectArray[i].positionY
+          );
+        }
+
+
+
+      }
+
     }
   }
 

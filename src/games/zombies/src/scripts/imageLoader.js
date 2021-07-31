@@ -21,25 +21,39 @@ class ImageLoader {
     };
   }
 
-  createImageObject(id) {
-    if(!id) console.log('ImageLoader: create must have an id object');
+  createImageObject() {
 
     let div = document.createElement('div');
     let canvas = document.createElement('canvas');
     let ctx = canvas.getContext('2d');
-    canvas.setAttribute('id', id);
-    div.setAttribute('id', 'div_'+id);
+    canvas.setAttribute('id', 'npcAndPlayer');
+    div.setAttribute('id', 'div_npcAndPlayer');
     div.appendChild(canvas);
     document.body.appendChild(div);
   }
 
-  drawShootingLine({id, mouseX, mouseY}) {
+  createImageObject2() {
+
+    let div = document.createElement('div');
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+    canvas.setAttribute('id', 'Player');
+    div.setAttribute('id', 'div_Player');
+    div.appendChild(canvas);
+    document.body.appendChild(div);
+  }
+  createShoot() {
     let div = document.createElement('div');
     let canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'shoot');
+    canvas.setAttribute('style', `z-index:4`);
     div.setAttribute('id', 'div_shoot');
     div.appendChild(canvas);
     document.body.appendChild(div);
+  }
+  
+  drawShootingLine({id, mouseX, mouseY}) {
+    let canvas = document.getElementById('shoot');
     let ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -47,13 +61,18 @@ class ImageLoader {
     canvas.style.top = '0px';
     canvas.style.left = '0px';
     ctx.beginPath();
-     ctx.moveTo(mouseX + 30, mouseY);
-     ctx.lineTo(mouseX + 30, 0);
+    ctx.moveTo(mouseX + 30, mouseY);
+    ctx.lineTo(mouseX + 30, 0);
     ctx.lineWidth = 2;
-     ctx.strokeStyle = 'red';
+    ctx.strokeStyle = 'red';
     ctx.stroke();
   }
 
+  clearShoot() {
+    let canvas = document.getElementById('shoot');
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+  }
   createScoreBoard() {
     let div = document.createElement('div');
     let canvas = document.createElement('canvas');
@@ -80,28 +99,21 @@ class ImageLoader {
     ctx.fillText('Zombies : ' + remaining, 20, 30);
 
   }
-  updateImageObject(object) {
 
-    if (!object.id) console.log('ImageLoader: NO OBJCET ID SET');
-    if (!object.x && object.x !== 0) console.log('ImageLoader: NO OBJECT X SET');
-    if (!object.y && object.y !== 0) console.log('ImageLoader: NO OBJECT Y SET');
-    if (!object.width) console.log('ImageLoader: NO OBJECT WIDTH SET');
-    if (!object.height) console.log('ImageLoader: NO OBJECT HEIGHT SET');
+  updateImageObject(object, objectArray) {
 
-    let canvas = document.getElementById(object.id);
-    if(!canvas) return
+    let canvas = document.getElementById('npcAndPlayer');
+    if (!canvas) return;
     let ctx = canvas.getContext('2d');
     canvas.setAttribute('style', `z-index:${object.overlay}`);
 
-    let tileMap = { width: 0, height: 0 }
+    let tileMap = { width: 0, height: 0 };
 
-    for (var i = 0; i < object.x; i++) {
-      tileMap.width = tileMap.width + object.tileWidth;
-    }
+    for (var i = 0; i < object.x; i++)
+    tileMap.width = tileMap.width + object.tileWidth;
 
-    for (var i = 0; i < object.y; i++) {
-      tileMap.height = tileMap.height + object.tileHeight;
-    }
+    for (var i = 0; i < object.y; i++)
+    tileMap.height = tileMap.height + object.tileHeight;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -109,20 +121,68 @@ class ImageLoader {
     canvas.style.top = '0px';
     canvas.style.left = '0px';
 
-    if (this.imageMap) {
-      ctx.setTransform(1, 0, 0, 1, object.mouseX + object.x, object.mouseY +object.y);
-      //ctx.rotate(object.angle * Math.PI / 180)
-      ctx.drawImage(
-        this.imageMap,
-        tileMap.width,
-        tileMap.height,
-        object.tileZoom,
-        object.tileZoom,
-        object.positionX,
-        object.positionY,
-        object.width,
-        object.height
-      );
+    if (this.imageMap && objectArray) {
+      for (var i = 0; i < objectArray.length; i++) {
+        if (objectArray[i]) {
+          ctx.setTransform(1, 0, 0, 1, objectArray[i].mouseX + objectArray[i].x, objectArray[i].mouseY +objectArray[i].y);
+          ctx.drawImage(
+            this.imageMap,
+            tileMap.width,
+            tileMap.height,
+            objectArray[i].tileZoom,
+            objectArray[i].tileZoom,
+            objectArray[i].positionX,
+            objectArray[i].positionY,
+            objectArray[i].width,
+            objectArray[i].height
+          );
+        }
+
+      }
+
+    }
+  }
+
+  updateImageObject2(object, objectArray) {
+
+    let canvas = document.getElementById('Player');
+    if (!canvas) return;
+    let ctx = canvas.getContext('2d');
+    canvas.setAttribute('style', `z-index:${object.overlay}`);
+
+    let tileMap = { width: 0, height: 0 };
+
+    for (var i = 0; i < object.x; i++)
+    tileMap.width = tileMap.width + object.tileWidth;
+
+    for (var i = 0; i < object.y; i++)
+    tileMap.height = tileMap.height + object.tileHeight;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0px';
+    canvas.style.left = '0px';
+
+    if (this.imageMap && objectArray) {
+      for (var i = 0; i < objectArray.length; i++) {
+        if (objectArray[i]) {
+          ctx.setTransform(1, 0, 0, 1, objectArray[i].mouseX + objectArray[i].x, objectArray[i].mouseY +objectArray[i].y);
+          ctx.drawImage(
+            this.imageMap,
+            tileMap.width,
+            tileMap.height,
+            objectArray[i].tileZoom,
+            objectArray[i].tileZoom,
+            objectArray[i].positionX,
+            objectArray[i].positionY,
+            objectArray[i].width,
+            objectArray[i].height
+          );
+        }
+
+      }
+
     }
   }
 
