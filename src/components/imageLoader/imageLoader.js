@@ -77,6 +77,47 @@ class ImageLoader {
     }
   }
 
+  updateImageObjectOnce(object, objectArray) {
+
+    let canvas = document.getElementById(object.id);
+    if (!canvas) return;
+    let ctx = canvas.getContext('2d');
+    canvas.setAttribute('style', `z-index:${object.overlay}`);
+
+    let tileMap = { width: 0, height: 0 };
+
+    for (var i = 0; i < object.x; i++)
+    tileMap.width = tileMap.width + object.tileWidth;
+
+    for (var i = 0; i < object.y; i++)
+    tileMap.height = tileMap.height + object.tileHeight;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0px';
+    canvas.style.left = '0px';
+
+    if (this.imageMap && objectArray) {
+      for (var i = 0; i < objectArray.length; i++) {
+        if (objectArray[i]) {
+          ctx.drawImage(
+            this.imageMap,
+            tileMap.width,
+            tileMap.height,
+            objectArray[i].tileZoom,
+            objectArray[i].tileZoom,
+            objectArray[i].positionX,
+            objectArray[i].positionY,
+            objectArray[i].width,
+            objectArray[i].height
+          );
+        }
+      }
+    }
+
+  }
+
   destroy(id) {
     let div = document.getElementById('div_' + id);
     if (!div) {
