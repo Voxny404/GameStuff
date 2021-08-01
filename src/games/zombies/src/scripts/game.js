@@ -18,6 +18,7 @@ let zombieCounter = 0;
 let scoreIncreaser = 2;
 let gameOver = false;
 let spawnInterval = 800;
+let gameStart = true;
 let div = document.createElement('div');
 
 iTitle.createGameTitle(title.toUpperCase(), false);
@@ -41,7 +42,6 @@ const createZombies = () => {
     x:0, y:0, positionX:Math.floor(Math.random()*(window.innerWidth - 50)) , positionY:0,
     width:60, height:60, id: 'npcAndPlayer', overlay:3
   }
-  //imageLoader.createImageObject(zombie1.id);
   zombies.push(zombie1);
   zombieCounter = zombieCounter + 1;
 };
@@ -54,6 +54,7 @@ let player = {
 };
 
 playerArray.push(player);
+
 imageLoader.loadImage('./src/images/map.png');
 imageLoader.createScoreBoard();
 imageLoader.createImageObject();
@@ -62,6 +63,15 @@ imageLoader.createShoot();
 
 const gameLoop = () => {
   if (!gameOver) requestAnimationFrame(gameLoop);
+  // fix player position
+  if(gameStart) {
+   player.positionX = window.innerWidth / 2;
+   player.positionY = window.innerHeight / 2;
+ } else {
+   player.positionX = 0;
+   player.positionY = 0;
+ }
+  //gameEvents
   if(zombieCounter > 50) scoreIncreaser = scoreIncreaser + 1;
   if(zombieCounter > 100) scoreIncreaser = scoreIncreaser + 120;
 
@@ -69,11 +79,13 @@ const gameLoop = () => {
   player.angle = Math.atan2(mouse.y - 150, mouse.x - 150);
 
   zombies.forEach((item, i) => {
-    // collision
+
+    //gameEvents
     item.positionY = item.positionY + 1;
     if(zombieCounter > 30) item.positionY = item.positionY + Math.floor(Math.random()*4);
     if(zombieCounter > 100) item.positionY = item.positionY + Math.floor(Math.random()*(scoreIncreaser/10000));
 
+    // collision
     let distanceY = Math.floor(item.positionY - player.mouseY)
     let distanceX = Math.floor(item.positionX - player.mouseX)
     if(distanceY <= 40 && distanceY >= -40 &&
@@ -96,8 +108,9 @@ const gameLoop = () => {
 const mouseEvents = (e) => {
   let canvas = document.getElementById('npcAndPlayer')
   const bounds = canvas.getBoundingClientRect();
-  mouse.x = e.pageX - bounds.left - scrollX;
-  mouse.y = e.pageY - bounds.top - scrollY;
+  gameStart = false;
+  mouse.x = e.clientX
+  mouse.y = e.clientY
   player.mouseX = mouse.x;
   player.mouseY = mouse.y;
 };
@@ -111,15 +124,16 @@ const createShoot = (e) => {
 
   zombies.forEach((item, i) => {
     if (e.clientX <= item.positionX + 20 && e.clientX >= item.positionX - 20) {
-      //imageLoader.destroy(item.id);
       zombies.splice(i, 1);
     }
   });
 };
+
 const createEventListener = () => {
   document.addEventListener("mousemove", mouseEvents);
   document.addEventListener('click', createShoot);
 };
+
 const createGame = () => {
   //background
   const backgroundImage = new Image(window.innerWidth,window.innerHeight);

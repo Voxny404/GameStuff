@@ -51,7 +51,7 @@ class ImageLoader {
     div.appendChild(canvas);
     document.body.appendChild(div);
   }
-  
+
   drawShootingLine({id, mouseX, mouseY}) {
     let canvas = document.getElementById('shoot');
     let ctx = canvas.getContext('2d');
@@ -167,7 +167,7 @@ class ImageLoader {
     if (this.imageMap && objectArray) {
       for (var i = 0; i < objectArray.length; i++) {
         if (objectArray[i]) {
-          ctx.setTransform(1, 0, 0, 1, objectArray[i].mouseX + objectArray[i].x, objectArray[i].mouseY +objectArray[i].y);
+          ctx.setTransform(1, 0, 0, 1, objectArray[i].mouseX, objectArray[i].mouseY);
           ctx.drawImage(
             this.imageMap,
             tileMap.width,
