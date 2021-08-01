@@ -4,7 +4,10 @@
 ### 1. Bacterial
   * Description
     * Chose your lucky number and watch bacteria eat each other on collision
-### 2. Zombies
+### 2. Gotchi
+  * Description
+    * simple Tamagotchi clone
+### 3. Zombies
   * Description
     * shoot as many zombies as you can
 

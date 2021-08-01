@@ -56,6 +56,14 @@ bacterial.setAttribute('href', 'src/games/bacteria/index.html');
 app.appendChild(document.createElement('br'));
 app.appendChild(bacterial);
 
+let gotchi = document.createElement('a');
+gotchi.innerText = 'GOTCHI';
+gotchi.style.fontSize = '12px';
+gotchi.style.textDecoration = 'none';
+gotchi.setAttribute('href', 'src/games/gotchi/index.html');
+app.appendChild(document.createElement('br'));
+app.appendChild(gotchi);
+
 let zombies = document.createElement('a');
 zombies.innerText = 'ZOMBIES';
 zombies.style.fontSize = '12px';
