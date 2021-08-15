@@ -150,3 +150,17 @@ gravity.style.textDecoration = 'none';
 gravity.setAttribute('href','src/components/gravity/gameDisplay.html');
 app.appendChild(document.createElement('br'));
 app.appendChild(gravity);
+
+let h3TitleElse = document.createElement('h3');
+h3TitleElse.innerText = 'ELSE';
+h3TitleElse.style.fontSize = '25px';
+app.appendChild(document.createElement('br'));
+app.appendChild(h3TitleElse);
+
+let virtualPattern = document.createElement('a');
+virtualPattern.innerText = 'Virtual Pattern';
+virtualPattern.style.fontSize = '12px';
+virtualPattern.style.textDecoration = 'none';
+virtualPattern.setAttribute('href', 'src/else/visualPattern/index.html');
+app.appendChild(document.createElement('br'));
+app.appendChild(virtualPattern);
