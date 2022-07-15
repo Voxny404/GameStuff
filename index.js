@@ -37,130 +37,53 @@ setInterval(() => {
 }, 1000)
 app.appendChild(canvas);
 
-let h1Title = document.createElement('h1');
-h1Title.style.fontSize = '45px';
-h1Title.innerText = 'INDEX';
-app.appendChild(h1Title);
+// create dom title
+function createTitle(title, size) {
+  if (!title || !size ) console.error('NO TITLE OR SIZE SET');
 
-let h3TitleGame = document.createElement('h3');
-h3TitleGame.innerText = 'GAMES';
-h3TitleGame.style.fontSize = '25px';
-app.appendChild(document.createElement('br'));
-app.appendChild(h3TitleGame);
+  let h1Title = document.createElement('h1');
+  h1Title.style.fontSize = size;
+  h1Title.innerText = title;
+  app.appendChild(h1Title);
+}
 
-let bacterial = document.createElement('a');
-bacterial.innerText = 'BACKTERIAL';
-bacterial.style.fontSize = '12px';
-bacterial.style.textDecoration = 'none';
-bacterial.setAttribute('href', 'src/games/bacteria/index.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(bacterial);
+// create text for dom
+function createLinkText(title, location, action) {
+  if (!title || !location ) console.error('NO TITLE OR LOCATION SET');
 
-let gotchi = document.createElement('a');
-gotchi.innerText = 'GOTCHI';
-gotchi.style.fontSize = '12px';
-gotchi.style.textDecoration = 'none';
-gotchi.setAttribute('href', 'src/games/gotchi/index.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(gotchi);
+  let textA = document.createElement('a');
+  textA.innerText = title;
+  textA.style.fontSize = '12px';
+  textA.style.textDecoration = 'none';
+  textA.setAttribute('href', location);
 
-let zombies = document.createElement('a');
-zombies.innerText = 'ZOMBIES';
-zombies.style.fontSize = '12px';
-zombies.style.textDecoration = 'none';
-zombies.setAttribute('href', 'src/games/zombies/index.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(zombies);
+  if (action == 'download') textA.setAttribute('download', title);
 
-app.appendChild(document.createElement('br'));
-let h3Title = document.createElement('h3');
-h3Title.innerText = 'COMPONENTS';
-h3Title.style.fontSize = '25px';
-app.appendChild(document.createElement('br'));
-app.appendChild(h3Title);
+  app.appendChild(document.createElement('br'));
+  app.appendChild(textA);
+}
 
-let gameController = document.createElement('a');
-gameController.innerText = 'CONTROLLER';
-gameController.style.fontSize = '12px';
-gameController.style.textDecoration = 'none';
-gameController.setAttribute('href', 'src/components/gameController/gamePad.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(gameController);
+// routs
+createTitle('INDEX', '45px')
 
-let gameIntro = document.createElement('a');
-gameIntro.innerText = 'INTRO';
-gameIntro.style.fontSize = '12px';
-gameIntro.style.textDecoration = 'none';
-gameIntro.setAttribute('href', 'src/components/gameIntro/gameIntro.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(gameIntro);
+createTitle('GAMES', '25px')
+createLinkText('BACKTERIAL', 'src/games/bacteria/index.html') 
+createLinkText('GOTCHI', 'src/games/gotchi/index.html') 
+createLinkText('ZOMBIES', 'src/games/zombies/index.html') 
 
-let gameObject = document.createElement('a');
-gameObject.innerText = 'GAMEOBJECTS';
-gameObject.style.fontSize = '12px';
-gameObject.style.textDecoration = 'none';
-gameObject.setAttribute('href', 'src/components/gameObject/gameDisplay.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(gameObject);
+createTitle('ProtoTypes', '25px')
+createLinkText('Astro', 'src/games/prototypeAstro/gameProtoTypeEXE.zip', 'download')
 
-let imageLoader = document.createElement('a');
-imageLoader.innerText = 'IMAGELOADER';
-imageLoader.style.fontSize = '12px';
-imageLoader.style.textDecoration = 'none';
-imageLoader.setAttribute('href', 'src/components/imageLoader/gameDisplay.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(imageLoader);
+createTitle('ELSE', '25px')
+createLinkText('Virtual Pattern', 'src/else/visualPattern/index.html')
 
-let imageLoader2 = document.createElement('a');
-imageLoader2.innerText = 'IMAGELOADER Animation';
-imageLoader2.style.fontSize = '12px';
-imageLoader2.style.textDecoration = 'none';
-imageLoader2.setAttribute('href', 'src/components/imageLoader/gameDisplay2.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(imageLoader2);
-
-let textObject = document.createElement('a');
-textObject.innerText = 'TEXTOBJECT';
-textObject.style.fontSize = '12px';
-textObject.style.textDecoration = 'none';
-textObject.setAttribute('href', 'src/components/textObject/gameDisplay.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(textObject);
-
-let virtuelController = document.createElement('a');
-virtuelController.innerText = 'VIRTUELCONTROLLER';
-virtuelController.style.fontSize = '12px';
-virtuelController.style.textDecoration = 'none';
-virtuelController.setAttribute('href','src/components/virtualGameController/exampleVGC.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(virtuelController);
-
-let menuBar = document.createElement('a');
-menuBar.innerText = 'MENU BAR';
-menuBar.style.fontSize = '12px';
-menuBar.style.textDecoration = 'none';
-menuBar.setAttribute('href','src/components/menuBar/gameDisplay.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(menuBar);
-
-let gravity = document.createElement('a');
-gravity.innerText = 'SIMPLE GRAVITY';
-gravity.style.fontSize = '12px';
-gravity.style.textDecoration = 'none';
-gravity.setAttribute('href','src/components/gravity/gameDisplay.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(gravity);
-
-let h3TitleElse = document.createElement('h3');
-h3TitleElse.innerText = 'ELSE';
-h3TitleElse.style.fontSize = '25px';
-app.appendChild(document.createElement('br'));
-app.appendChild(h3TitleElse);
-
-let virtualPattern = document.createElement('a');
-virtualPattern.innerText = 'Virtual Pattern';
-virtualPattern.style.fontSize = '12px';
-virtualPattern.style.textDecoration = 'none';
-virtualPattern.setAttribute('href', 'src/else/visualPattern/index.html');
-app.appendChild(document.createElement('br'));
-app.appendChild(virtualPattern);
+createTitle('COMPONENTS', '25px')
+createLinkText('CONTROLLER', 'src/components/gameController/gamePad.html') 
+createLinkText('INTRO', 'src/components/gameIntro/gameIntro.html') 
+createLinkText('GAMEOBJECTS', 'src/components/gameObject/gameDisplay.html') 
+createLinkText('IMAGELOADER', 'src/components/imageLoader/gameDisplay.html')
+createLinkText('IMAGELOADER Animation', 'src/components/imageLoader/gameDisplay2.html')
+createLinkText('TEXTOBJECT', 'src/components/textObject/gameDisplay.html')
+createLinkText('VIRTUELCONTROLLER', 'src/components/virtualGameController/exampleVGC.html')
+createLinkText('MENU BAR', 'src/components/menuBar/gameDisplay.html')
+createLinkText('SIMPLE GRAVITY', 'src/components/gravity/gameDisplay.html')
