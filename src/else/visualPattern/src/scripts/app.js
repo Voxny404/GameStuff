@@ -1,3 +1,6 @@
+let displayColor = '#150050'
+const backgroundColor = '#000000'
+
 let app = document.createElement('div');
 let canvas = document.createElement('canvas');
 let ctx = canvas.getContext('2d');
@@ -8,6 +11,8 @@ canvas.style.top = '0px'; canvas.style.left = '0px';
 
 window.onresize = () => {
   canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  ctx.fillStyle = backgroundColor;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
 app.appendChild(canvas); document.body.appendChild(app);
@@ -18,13 +23,17 @@ let pointerObjectGlobal = {
   w: 50, h: 50,
 };
 
+ctx.fillStyle = backgroundColor;
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
 const draw = () => {
   requestAnimationFrame(draw);
+
   let randomizer = Math.floor(Math.random() * 4);
   let randomizerShape = Math.floor(Math.random() * 5);
 
-  ctx.strokeStyle = 'red';
-  ctx.fillStyle = '#990000';
+  ctx.strokeStyle = displayColor;
+  ctx.fillStyle = backgroundColor;
 
   pointerObjectGlobal.w = Math.floor(Math.random() * 20);
   pointerObjectGlobal.h = Math.floor(Math.random() * 20);
@@ -56,11 +65,14 @@ const draw = () => {
   } else if (randomizerShape === 2) {
     ctx.clearRect(
       pointerObjectGlobal.x, pointerObjectGlobal.y, pointerObjectGlobal.w, pointerObjectGlobal.h);
+      ctx.rect(pointerObjectGlobal.x, pointerObjectGlobal.y, pointerObjectGlobal.w, pointerObjectGlobal.h);
+      ctx.fillStyle = backgroundColor;
+      ctx.fill();
   } else if (randomizerShape === 3) {
     ctx.fillRect(
       pointerObjectGlobal.x, pointerObjectGlobal.y, pointerObjectGlobal.w, pointerObjectGlobal.h);
   }  else if (randomizerShape === 4) {
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = displayColor;
     ctx.fillRect(
       pointerObjectGlobal.x, pointerObjectGlobal.y, pointerObjectGlobal.w, pointerObjectGlobal.h);
   }
